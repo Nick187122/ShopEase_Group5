@@ -1,11 +1,22 @@
 const express = require("express");
 const app = express();
-const PORT = 3000;
+const productRoutes = require("./routes/productRoutes");
 
-app.get("/", (req, res) => {
-  console.log("Here");
-  res.sendStatus(500);
-  res.send("Hi");
+app.use(express.json());
+  
+// Routes
+app.use("/api/products", productRoutes);
+
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
 
-app.listen(PORT);
+// swagger configuration
+
+const swaggerUi = require("swagger-ui-express");
+const YAML = require("yamljs");
+
+const swaggerDocument = YAML.load("./swagger/swagger.yaml");
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));

@@ -1,0 +1,12 @@
+openapi: 3.0.0
+info:
+  title: ShopEase API
+  version: 1.0.0
+
+paths:
+  /api/products:
+    get:
+      summary: Get all products
+      responses:
+        200:
+          description: Success

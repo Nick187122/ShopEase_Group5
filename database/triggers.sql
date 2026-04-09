@@ -1,5 +1,5 @@
 -- Trigger configuration for ShopEase
--- Purpose: Automatically decrease product stock when a new order item is inserted.
+
 
 -- Optional supporting tables for order flow (created only if missing).
 CREATE TABLE IF NOT EXISTS orders (
@@ -45,7 +45,6 @@ BEGIN
 END;
 $$;
 
--- Recreate trigger idempotently.
 DROP TRIGGER IF EXISTS trg_decrement_inventory_on_order_item ON order_items;
 
 CREATE TRIGGER trg_decrement_inventory_on_order_item
